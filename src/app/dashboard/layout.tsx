@@ -40,7 +40,7 @@ export default function RootLayout({
                                 Master Data
                             </div>
                             <Button variant={"ghost"} asChild className="w-full justify-start">
-                                <Link href={""}>
+                                <Link href={"/dashboard/category"}>
                                     <Layers3 className="mr-2 w-4 h4"/>
                                     Kategori
                                 </Link>
