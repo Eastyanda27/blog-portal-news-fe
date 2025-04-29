@@ -1,10 +1,10 @@
 "use client"
 
 import { Category } from "@/model/Category"
-import React, { FC, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { setupInterceptor } from "../../../../../../lib/axios"
 import { categoryFormSchema } from "../lib/validation"
-import { createCategory } from "../lib/action"
+import { createCategory, editCategory } from "../lib/action"
 import Swal from "sweetalert2"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -23,6 +23,12 @@ const FormCategoryPage: FC<FormCategoryProps> = ({type, defaultValues}) => {
     const [title, setTitle] = useState('');
     const [error, setError] = useState<string[]>([]);
 
+    useEffect(() => {
+        if (type == "EDIT" && defaultValues) {
+            setTitle(defaultValues.title)
+        }
+    }, [type, defaultValues])
+
     const handleCategory = async (e: React.FormEvent) => {
         e.preventDefault();
         setError([]);
@@ -38,16 +44,40 @@ const FormCategoryPage: FC<FormCategoryProps> = ({type, defaultValues}) => {
                 return;
             }
 
-            await createCategory({title: title})
-            Swal.fire({
-                icon: "success",
-                title: "success",
-                text: "Kategori Berhasil Disimpan",
-                toast: true,
-                showConfirmButton: false,
-                timer: 1500
-            });
-            router.push("/dashboard/category")
+            if (type == "ADD") {
+                await createCategory({title: title})
+                Swal.fire({
+                    icon: "success",
+                    title: "success",
+                    text: "Kategori Berhasil Disimpan",
+                    toast: true,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                router.push("/dashboard/category")
+            } else {
+                if (defaultValues?.id) {
+                    await editCategory({title: title}, defaultValues.id);
+                    Swal.fire({
+                        icon: "success",
+                        title: "success",
+                        text: "Kategori Berhasil Diubah",
+                        toast: true,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    router.push("/dashboard/category")
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops!",
+                        text: "ID Kategori Tidak Ada",
+                        toast: true,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
         } catch (error) {
             Swal.fire({
                 icon: "error",
