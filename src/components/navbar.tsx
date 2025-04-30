@@ -53,7 +53,7 @@ export default function Navbar() {
                                 <div className="py-1">
                                     {categories.map((category) => (
                                         <MenuItem key={category.id}>
-                                            <Link href={""} className="block px-4 py-2 text-sm font-medium text-gray-900 hover:text-blue-500">
+                                            <Link href={`/category/${category.id}`} className="block px-4 py-2 text-sm font-medium text-gray-900 hover:text-blue-500">
                                                 {category.title}
                                             </Link>
                                         </MenuItem>
@@ -78,7 +78,7 @@ export default function Navbar() {
                     {menuOpen && (
                         <div className="order-2 -ml-4 mt-4 flex w-full flex-col items-center justify-start md:hidden">
                             {categories.map((category) => (
-                                <Link href={""} className="w-full px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500">
+                                <Link href={`/category/${category.id}`} className="w-full px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500">
                                     {category.title}
                                 </Link>
                             ))}
