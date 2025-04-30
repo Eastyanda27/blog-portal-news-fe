@@ -8,6 +8,7 @@ export interface Content {
     created_at: string;
     author: string;
     created_by_name: string;
+    category_name: string;
     created_by_id: number;
     category_id: number;
 }
