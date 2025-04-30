@@ -34,8 +34,8 @@ const FormContentPage: FC<FormContentProps> = ({type, defaultValues, categoryLis
     const [error, setError] = useState<string[]>([]);
 
     const statusList = [
-        {value: 'PUBLISH', label: 'Publish'},
-        {value: 'DRAFT', label: 'Draft'}
+        {value: 'Publish', label: 'Publish'},
+        {value: 'Draft', label: 'Draft'}
     ];
 
     const handleCategoryChange = (value: string) => {
