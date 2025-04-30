@@ -10,7 +10,7 @@ import SubmitButtonForm from "../../components/submit-button"
 import { useRouter } from "next/navigation"
 import { Content } from "@/model/Content"
 import { contentFormSchema } from "../lib/validation"
-import { createContent } from "../lib/action"
+import { createContent, editContent } from "../lib/action"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 
@@ -52,6 +52,17 @@ const FormContentPage: FC<FormContentProps> = ({type, defaultValues, categoryLis
         }
     }, [categoryList])
 
+    useEffect(() => {
+        if (type == "EDIT" && defaultValues) {
+            setTitle(defaultValues.title);
+            setExcerpt(defaultValues.excerpt);
+            setDescription(defaultValues.description);
+            setCategoryId(defaultValues.category_id.toString());
+            setTags(defaultValues.tags.toString());
+            setStatus(defaultValues.status)
+        }
+    }, [type, defaultValues])
+
     const handleContent = async (e: React.FormEvent) => {
         e.preventDefault();
         setError([]);
@@ -88,7 +99,36 @@ const FormContentPage: FC<FormContentProps> = ({type, defaultValues, categoryLis
                     timer: 1500
                 });
                 router.push("/dashboard/content")
-            } 
+            } else {
+                if (defaultValues?.id) {
+                    await editContent({
+                        title: title,
+                        excerpt: excerpt,
+                        description: description,
+                        category_id: Number(categoryId),
+                        tags: tags,
+                        status: status,
+                    }, defaultValues.id);
+                    Swal.fire({
+                        icon: "success",
+                        title: "success",
+                        text: "Konten Berhasil Diubah",
+                        toast: true,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    router.push("/dashboard/content")
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops!",
+                        text: "ID Konten Tidak Ada",
+                        toast: true,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
         } catch (error) {
             Swal.fire({
                 icon: "error",
