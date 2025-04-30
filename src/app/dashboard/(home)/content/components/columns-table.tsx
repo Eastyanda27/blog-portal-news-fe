@@ -5,6 +5,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { Delete, Pencil } from "lucide-react"
 import Link from "next/link"
 import { Content } from "@/model/Content"
+import DeleteContent from "./delete-content"
 
 export type Payment = {
   id: string
@@ -43,7 +44,7 @@ export const columns: ColumnDef<Content>[] = [
                         Edit
                     </Link>
                 </Button>
-                {/*<DeleteContent id={content.id}/>*/}
+                <DeleteContent id={content.id}/>
             </div>
         )
     },
