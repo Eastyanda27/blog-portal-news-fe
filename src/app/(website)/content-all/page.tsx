@@ -61,7 +61,7 @@ export default function ContentAll() {
                     {contents.map((content, index) => (
                         <div key={index} className="group cursor-pointer">
                             <div className="overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105">
-                                <Link href={""} className="relative block aspect-ratio">
+                                <Link href={`/content-all/detail/${content.id}`} className="relative block aspect-ratio">
                                     {content.title != "" && (
                                         <Image src={"/img/image1.jpeg"} alt={content.title} width={600} height={400} className="object-cover transition-all"/>
                                     )}
@@ -79,7 +79,7 @@ export default function ContentAll() {
                                     </Link>
                                 </div>
                                 <h2 className="text-lg font-semibold leading-snug tracking-tight mt-2">
-                                    <Link href={""}>
+                                    <Link href={`/content-all/detail/${content.id}`}>
                                         <span className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition transition-[background-size] duration-500 hover: bg-[length:100%_3px]">
                                         {content.title}
                                         </span>
