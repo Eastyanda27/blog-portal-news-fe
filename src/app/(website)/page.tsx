@@ -51,11 +51,7 @@ export default function Home() {
             <div>
               <div>
                 <div className="flex gap-3 ">
-<<<<<<< HEAD
-                  <Link href={""}>
-=======
                   <Link href={`/category/${content.category_id}`}>
->>>>>>> modul-content
                     <span className="inline-block text-sx font-medium tracking-wider uppercase mt-5 text-blue-600">
                       {content.category_name}
                     </span>
@@ -154,11 +150,7 @@ export default function Home() {
         ))}
       </div>
       <div className="mt-10 flex justify-center">
-<<<<<<< HEAD
-        <Link href={""} className="relative inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-2 pl-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20">
-=======
         <Link href={"/content-all"} className="relative inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-2 pl-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20">
->>>>>>> modul-content
           <span>
             See All Post
           </span>
