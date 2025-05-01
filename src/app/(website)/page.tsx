@@ -42,7 +42,7 @@ export default function Home() {
         {sliceData.map((content) => (
           <div className="group cursor-pointer">
             <div className="overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105">
-              <Link className="relative block aspect-video" href={""}>
+              <Link className="relative block aspect-video" href={`/content-all/detail/${content.id}`}>
                 {content.title != "" && (
                   <Image src={"/img/image1.jpeg"} alt={content.title} width={600} height={400} className="object-cover transition-all"/>
                 )}
@@ -58,7 +58,7 @@ export default function Home() {
                   </Link>
                 </div>
                 <h2 className="text-lg font-semibold leading-snug tracking-light mt-2">
-                  <Link href={""}>
+                  <Link href={`/content-all/detail/${content.id}`}>
                     <span className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition transition-[background-size] duration-500 hover: bg-[length:100%_3px]">
                       {content.title}
                     </span>
@@ -97,9 +97,9 @@ export default function Home() {
         {contents.map((content) => (
           <div className="group cursor-pointer">
             <div className="overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105">
-              <Link className="relative block aspect-ratio" href={""}>
+              <Link className="relative block aspect-ratio" href={`/content-all/detail/${content.id}`}>
                 {content.title != "" && (
-                  <Image src={"/img/image1.jpeg"} alt={content.title} width={600} height={400} className="object-cover transition-all"/>
+                  <Image src={"/img/image1.jpeg"} alt={content.title} height={600} width={600} className="object-cover transition-all"/>
                 )}
                 {content.title == "" && (
                   <img src="https://placehold.co/600x400" alt="data" className="object-cover transition-all"/>
@@ -109,12 +109,14 @@ export default function Home() {
             <div>
               <div>
                 <div className="flex gap-3 ">
-                  <span className="inline-block text-sx font-medium tracking-wider uppercase mt-5 text-blue-600">
-                        {content.category_name}
-                      </span>
-                  </div>
+                  <Link href={`/category/${content.category_id}`}>
+                    <span className="inline-block text-sx font-medium tracking-wider uppercase mt-5 text-blue-600">
+                      {content.category_name}
+                    </span>
+                  </Link>
+                </div>
                 <h2 className="text-lg font-semibold leading-snug tracking-light mt-2">
-                  <Link href={""}>
+                  <Link href={`/content-all/detail/${content.id}`}>
                     <span className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition transition-[background-size] duration-500 hover: bg-[length:100%_3px]">
                       {content.title}
                     </span>
